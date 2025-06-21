@@ -1,129 +1,187 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardápio</title>
-    <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cardápio</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+        position: relative;
+    }
+    .container {
+        max-width: 600px;
+        margin: auto;
+        background-color: #fff;
+        padding: 30px 20px 40px;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.15);
+        box-sizing: border-box;
+        position: relative;
+    }
+    .title-box {
+        border: 4px solid #000;
+        padding: 25px 60px;
+        text-align: center;
+        margin-bottom: 40px;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        border-radius: 15px;
+        background: linear-gradient(135deg, #fff, #f0f0f0);
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+    .title-box:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+    }
+    h1 {
+        color: #000;
+        margin: 0;
+        font-size: 32px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    h2 {
+        color: #000;
+        border-bottom: 2px solid #000;
+        padding-bottom: 5px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-size: 22px;
+        transition: font-size 0.3s ease;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        padding: 10px 0;
+        border-bottom: 1px dashed #ccc;
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        transition: font-size 0.3s ease;
+    }
+    li span.item-name {
+        color: red;
+        font-weight: bold;
+    }
+    li span.price {
+        color: #000;
+    }
+    .footer {
+        text-align: center;
+        margin-top: 50px; /* aumentei aqui para descer o texto */
+        font-weight: bold;
+        color: #000;
+        font-size: 20px;
+    }
+
+    /* Botão + no canto superior direito */
+    #increase-font-btn {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 28px;
+        cursor: pointer;
+        line-height: 0;
+        user-select: none;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        transition: background-color 0.3s ease;
+        z-index: 1000;
+    }
+    #increase-font-btn:hover:not(:disabled) {
+        background-color: #444;
+    }
+
+    /* Botão - no canto superior esquerdo - começa invisível */
+    #decrease-font-btn {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background-color: #888;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 28px;
+        cursor: pointer;
+        line-height: 0;
+        user-select: none;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        transition: background-color 0.3s ease, opacity 0.3s ease;
+        z-index: 1000;
+        display: none; /* sumido no início */
+    }
+    #decrease-font-btn:hover:not(:disabled) {
+        background-color: #444;
+    }
+    #decrease-font-btn:disabled {
+        background-color: #888;
+        cursor: not-allowed;
+    }
+
+    /* Responsivo */
+    @media (max-width: 400px) {
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            /* Sem display flex nem min-height */
+            padding: 10px;
         }
         .container {
-            max-width: 600px;
-            margin: auto; /* centraliza horizontal */
-            background-color: #fff;
-            padding: 30px 20px 40px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.15);
-            box-sizing: border-box;
+            max-width: 100%;
+            padding: 20px 15px 30px;
+            border-radius: 8px;
+            box-shadow: none;
         }
         .title-box {
-            border: 4px solid #000;
-            padding: 25px 60px;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-            border-radius: 15px;
-            background: linear-gradient(135deg, #fff, #f0f0f0);
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-        .title-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+            padding: 20px 15px;
+            font-size: 24px;
+            border-width: 3px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         h1 {
-            color: #000;
-            margin: 0;
             font-size: 32px;
-            font-weight: 900;
             letter-spacing: 2px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         h2 {
-            color: #000;
-            border-bottom: 2px solid #000;
-            padding-bottom: 5px;
-            margin-top: 30px;
-            margin-bottom: 15px;
             font-size: 22px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+            margin-top: 25px;
+            margin-bottom: 10px;
         }
         li {
-            padding: 10px 0;
-            border-bottom: 1px dashed #ccc;
-            display: flex;
-            justify-content: space-between;
-        }
-        li span.item-name {
-            color: red;
-            font-weight: bold;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 8px 0;
+            font-size: 16px;
         }
         li span.price {
-            color: #000;
+            margin-top: 5px;
+            color: #333;
+            font-weight: 600;
         }
         .footer {
-            text-align: center;
-            margin-top: 30px;
-            font-weight: bold;
-            color: #000;
-            font-size: 20px;
+            font-size: 16px;
+            margin-top: 20px;
         }
-
-        /* CSS responsivo adicionado */
-        @media (max-width: 400px) {
-            body {
-                padding: 10px;
-            }
-            .container {
-                max-width: 100%;
-                padding: 20px 15px 30px;
-                border-radius: 8px;
-                box-shadow: none;
-            }
-            .title-box {
-                padding: 20px 15px;
-                font-size: 24px;
-                border-width: 3px;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            }
-            h1 {
-                font-size: 24px;
-                letter-spacing: 1px;
-            }
-            h2 {
-                font-size: 18px;
-                margin-top: 25px;
-                margin-bottom: 10px;
-            }
-            li {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 8px 0;
-                font-size: 14px;
-            }
-            li span.price {
-                margin-top: 5px;
-                color: #333;
-                font-weight: 600;
-            }
-            .footer {
-                font-size: 16px;
-                margin-top: 20px;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
+    <button id="decrease-font-btn" aria-label="Diminuir fonte" disabled>–</button>
+    <button id="increase-font-btn" aria-label="Aumentar fonte">+</button>
+
     <div class="container">
         <div style="text-align:center;">
             <div class="title-box">
@@ -162,5 +220,60 @@
             Bom Apetite!! DEUS É FIEL!!
         </div>
     </div>
+
+<script>
+    // Tamanhos base
+    const baseH2Size = 22;
+    const baseLiSize = 16;
+
+    // Limites máximos
+    const maxH2Size = 36;
+    const maxLiSize = 26;
+
+    let currentH2Size = baseH2Size;
+    let currentLiSize = baseLiSize;
+
+    const btnIncrease = document.getElementById('increase-font-btn');
+    const btnDecrease = document.getElementById('decrease-font-btn');
+    const h2Elements = document.querySelectorAll('h2');
+    const liElements = document.querySelectorAll('li');
+
+    function updateButtons() {
+        if (currentH2Size === baseH2Size && currentLiSize === baseLiSize) {
+            btnDecrease.style.display = 'none';
+            btnDecrease.disabled = true;
+        } else {
+            btnDecrease.style.display = 'block';
+            btnDecrease.disabled = false;
+        }
+        btnIncrease.disabled = (currentH2Size === maxH2Size && currentLiSize === maxLiSize);
+    }
+
+    btnIncrease.addEventListener('click', () => {
+        if (currentH2Size < maxH2Size) {
+            currentH2Size += 2;
+            h2Elements.forEach(el => el.style.fontSize = currentH2Size + 'px');
+        }
+        if (currentLiSize < maxLiSize) {
+            currentLiSize += 1;
+            liElements.forEach(el => el.style.fontSize = currentLiSize + 'px');
+        }
+        updateButtons();
+    });
+
+    btnDecrease.addEventListener('click', () => {
+        if (currentH2Size > baseH2Size) {
+            currentH2Size -= 2;
+            h2Elements.forEach(el => el.style.fontSize = currentH2Size + 'px');
+        }
+        if (currentLiSize > baseLiSize) {
+            currentLiSize -= 1;
+            liElements.forEach(el => el.style.fontSize = currentLiSize + 'px');
+        }
+        updateButtons();
+    });
+
+    updateButtons();
+</script>
 </body>
 </html>
