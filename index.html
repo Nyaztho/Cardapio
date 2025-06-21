@@ -77,10 +77,10 @@
     }
     .footer {
         text-align: center;
-        margin-top: 50px; /* aumentei aqui para descer o texto */
+        margin-top: 50px;
         font-weight: bold;
         color: #000;
-        font-size: 20px;
+        font-size: 26px; /* Aumentei aqui */
     }
 
     /* Botão + no canto superior direito */
@@ -124,7 +124,7 @@
         box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         transition: background-color 0.3s ease, opacity 0.3s ease;
         z-index: 1000;
-        display: none; /* sumido no início */
+        display: none;
     }
     #decrease-font-btn:hover:not(:disabled) {
         background-color: #444;
@@ -134,7 +134,6 @@
         cursor: not-allowed;
     }
 
-    /* Responsivo */
     @media (max-width: 400px) {
         body {
             padding: 10px;
@@ -172,7 +171,7 @@
             font-weight: 600;
         }
         .footer {
-            font-size: 16px;
+            font-size: 20px; /* Também aumenta no mobile */
             margin-top: 20px;
         }
     }
@@ -222,11 +221,8 @@
     </div>
 
 <script>
-    // Tamanhos base
     const baseH2Size = 22;
     const baseLiSize = 16;
-
-    // Limites máximos
     const maxH2Size = 36;
     const maxLiSize = 26;
 
