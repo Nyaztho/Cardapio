@@ -80,10 +80,15 @@
         margin-top: 50px;
         font-weight: bold;
         color: #000;
-        font-size: 26px; /* Aumentei aqui */
+        font-size: 26px;
     }
-
-    /* Botão + no canto superior direito */
+    .footer-box {
+        border: 3px solid #000;
+        padding: 10px 20px;
+        display: inline-block;
+        border-radius: 8px;
+    }
+    /* Botões */
     #increase-font-btn {
         position: fixed;
         top: 15px;
@@ -105,8 +110,6 @@
     #increase-font-btn:hover:not(:disabled) {
         background-color: #444;
     }
-
-    /* Botão - no canto superior esquerdo - começa invisível */
     #decrease-font-btn {
         position: fixed;
         top: 15px;
@@ -133,47 +136,15 @@
         background-color: #888;
         cursor: not-allowed;
     }
-
     @media (max-width: 400px) {
-        body {
-            padding: 10px;
-        }
-        .container {
-            max-width: 100%;
-            padding: 20px 15px 30px;
-            border-radius: 8px;
-            box-shadow: none;
-        }
-        .title-box {
-            padding: 20px 15px;
-            font-size: 24px;
-            border-width: 3px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        h1 {
-            font-size: 32px;
-            letter-spacing: 2px;
-        }
-        h2 {
-            font-size: 22px;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-        li {
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 8px 0;
-            font-size: 16px;
-        }
-        li span.price {
-            margin-top: 5px;
-            color: #333;
-            font-weight: 600;
-        }
-        .footer {
-            font-size: 20px; /* Também aumenta no mobile */
-            margin-top: 20px;
-        }
+        body { padding: 10px; }
+        .container { max-width: 100%; padding: 20px 15px 30px; border-radius: 8px; box-shadow: none; }
+        .title-box { padding: 20px 15px; font-size: 24px; border-width: 3px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        h1 { font-size: 32px; letter-spacing: 2px; }
+        h2 { font-size: 22px; margin-top: 25px; margin-bottom: 10px; }
+        li { flex-direction: column; align-items: flex-start; padding: 8px 0; font-size: 16px; }
+        li span.price { margin-top: 5px; color: #333; font-weight: 600; }
+        .footer { font-size: 20px; margin-top: 20px; }
     }
 </style>
 </head>
@@ -216,7 +187,9 @@
         </ul>
 
         <div class="footer">
-            BOM APETITE!! DEUS É FIEL!!
+            <div class="footer-box">
+                BOM APETITE!!<br>DEUS É FIEL!!
+            </div>
         </div>
     </div>
 
